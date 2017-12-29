@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1060012607728",
+    "firebase_url": "https://withhome360.firebaseio.com",
+    "project_id": "withhome360",
+    "storage_bucket": "withhome360.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060012607728:android:9954a3b707674a28",
+        "android_client_info": {
+          "package_name": "www.withhome360.com.withmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060012607728-7uotfi07c83g38qmu0p1e3shqlcjl6ca.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1060012607728-345v4rmrsecl5mqc655dgakd15ofer9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8R_2K2NG5v2wCU9AoJ4L--YwETCSn3iw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

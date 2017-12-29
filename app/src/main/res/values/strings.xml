@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">WithManagement</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">촬영신청</string>
+    <string name="title_notifications">촬영완료</string>
+    <string name="title">건물명 : </string>
+    <string name="name">신청인 : </string>
+    <string name="phone">연락처 : </string>
+    <string name="address">주소 : </string>
+    <string name="address_detail">상세주소 : </string>
+
+</resources>
