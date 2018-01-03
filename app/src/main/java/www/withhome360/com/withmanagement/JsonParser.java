@@ -1,5 +1,6 @@
 package www.withhome360.com.withmanagement;
 
+import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -39,27 +40,41 @@ public class JsonParser {
     }
 
     public SingleAdapter DoJsonPasing(SingleAdapter adapter)throws IOException{
-        String tiltle;
-        String name;
-        String phone;
-        String address;
-        String address_detail;
         int id;
+        String date, time;
+        boolean anytime;
+        String title, name, phone, address, address_detail;
+        double lat, lng;
+        String room_type, rent_type;
+        boolean short_term;
+        String room_number;
+        double public_size,private_size;
 
         try{
             JSONArray jarray = new JSONArray(jsonString);
             for(int i = 0; i < jarray.length(); i++){
                 JSONObject jObject = jarray.getJSONObject(i);
-                tiltle = jObject.getString("title");
+                id = Integer.parseInt(jObject.getString("id"));
+                date = jObject.getString("date");
+                time = jObject.getString("time");
+                anytime = jObject.getString("anytime").equals("1");
+                title = jObject.getString("title");
                 name = jObject.getString("name");
                 phone = jObject.getString("phone");
                 address = jObject.getString("address");
                 address_detail = jObject.getString("address_detail");
-                id = Integer.parseInt(jObject.getString("id"));
-                adapter.addItem(new SingleItem(id,tiltle,name,phone,address,address_detail));
-//                adapter.notifyDataSetChanged();
+                lat = Double.parseDouble(jObject.getString("lat"));
+                lng = Double.parseDouble(jObject.getString("lng"));
+                room_type = jObject.getString("room_type");
+                rent_type= jObject.getString("rent_type");
+                short_term = jObject.getString("short_term").equals("1");
+                room_number = jObject.getString("room_number");
+                public_size = Double.parseDouble(jObject.getString("public_size"));
+                private_size = Double.parseDouble(jObject.getString("private_size"));
 
+                adapter.addItem(new SingleItem(id,date,time,anytime,name,phone,title,address,address_detail,lat,lng,room_type,rent_type,short_term,room_number,public_size,private_size));
             }
+
         }catch (JSONException e){
             e.printStackTrace();
         }

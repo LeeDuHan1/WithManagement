@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WithManagement</string>
+    <string name="app_name">위드홈관리자</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">촬영신청</string>
     <string name="title_notifications">촬영완료</string>
@@ -8,5 +8,6 @@
     <string name="phone">연락처 : </string>
     <string name="address">주소 : </string>
     <string name="address_detail">상세주소 : </string>
+    <string name="title_activity_map_view">Map</string>
 
 </resources>

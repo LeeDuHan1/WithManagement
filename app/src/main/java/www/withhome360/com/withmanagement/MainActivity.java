@@ -2,6 +2,7 @@ package www.withhome360.com.withmanagement;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import java.security.Signature;
 
 public class MainActivity extends AppCompatActivity {
     GetParsingData gpd;
-    private TextView mTextMessage;
+//    private TextView mTextMessage;
     public ProgressDialog dialog;
     private BackGroundTask backGroundTask;
     private String enrollUrl = "http://www.withhome360.com/bringEnrollDb.php";
@@ -43,13 +44,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    adapter.clearItems();
+                    adapter.notifyDataSetChanged();
 //                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
                     adapter.clearItems();
                     adapter.notifyDataSetChanged();
                     try {
-                        BackGroundTask backGroundTask = new BackGroundTask(dialog, enrollUrl,  mTextMessage, adapter, listView);
+                        BackGroundTask backGroundTask = new BackGroundTask(dialog, enrollUrl, adapter, listView);
                         backGroundTask.execute().get();
                     }catch (Exception e){
                        e.printStackTrace();
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.clearItems();
                     adapter.notifyDataSetChanged();
                     try {
-                        BackGroundTask backGroundTask = new BackGroundTask(dialog, completed_enrollUrl,  mTextMessage, adapter, listView);
+                        BackGroundTask backGroundTask = new BackGroundTask(dialog, completed_enrollUrl, adapter, listView);
                         backGroundTask.execute().get();
                     }catch (Exception e){
                         e.printStackTrace();
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+//        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -92,15 +95,33 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                SingleItem item = (SingleItem) adapter.getItem(i);
-//                Toast.makeText(getApplicationContext(),"선택 : "+item.getID(),Toast.LENGTH_LONG).show();
+                SingleItem item = (SingleItem) adapter.getItem(i);
+                Intent intent = new Intent(getApplicationContext(),MapViewActivity.class);
+                intent.putExtra("id",item.getID());
+                intent.putExtra("date",item.getDate());
+                intent.putExtra("time",item.getTime());
+                intent.putExtra("anytime",item.getAnytime());
+                intent.putExtra("name",item.getName());
+                intent.putExtra("phone",item.getPhone());
+                intent.putExtra("title",item.getTitle());
+                intent.putExtra("address",item.getAddress()+" "+ item.getAddress_detail());
+                intent.putExtra("lat",item.getLat());
+                intent.putExtra("lng",item.getLng());
+                intent.putExtra("room_type",item.getRoom_type());
+                intent.putExtra("rent_type",item.getRent_type());
+                intent.putExtra("short_term",item.getShort_term());
+                intent.putExtra("room_number",item.getRoom_number());
+                intent.putExtra("public_size",item.getPublic_size());
+                intent.putExtra("private_size",item.getPrivate_size());
+
+                startActivity(intent);
             }
         });
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 SingleItem item = (SingleItem) adapter.getItem(i);
-                Toast.makeText(getApplicationContext(),"선택 : "+item.getID(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"id : "+item.getID()+"상관 : "+item.getAnytime(),Toast.LENGTH_LONG).show();
                 return true;
             }
         });

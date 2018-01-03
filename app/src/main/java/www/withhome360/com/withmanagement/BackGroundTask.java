@@ -31,6 +31,14 @@ public class BackGroundTask extends AsyncTask<String, String, String> {
         this.adapter = adapter;
         this.listView = listView;
     }
+    public BackGroundTask(ProgressDialog progressDialog, String url, SingleAdapter adapter, ListView listView) {
+        super();
+        this.progressDialog = progressDialog;
+        this.pUrl = url;
+        this.editText = editText;
+        this.adapter = adapter;
+        this.listView = listView;
+    }
 
     @Override
     protected void onPreExecute() {
@@ -57,7 +65,7 @@ public class BackGroundTask extends AsyncTask<String, String, String> {
         try{
             JsonParser jp = new JsonParser(string);
             this.adapter = jp.DoJsonPasing(adapter);
-            this.editText.setText(result);
+//            this.editText.setText(result);
             listView.setAdapter(adapter);
 
         }catch (Exception e){

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        map:cameraZoom="18"
+        map:layout_constraintBottom_toTopOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        tools:context="www.withhome360.com.withmanagement.MapViewActivity" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/address"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="17dp"-->
+    <!--android:text="주소"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/map"-->
+    <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/date"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="날짜"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/address"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/address" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="시간"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/anytime"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/date"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/map" />-->
+
+    <!--<CheckBox-->
+    <!--android:id="@+id/anytime"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="20dp"-->
+    <!--android:checked="false"-->
+    <!--android:clickable="false"-->
+    <!--android:text="상관없음"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/name"-->
+    <!--app:layout_constraintEnd_toEndOf="@+id/title"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/title"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/time" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/title"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="1dp"-->
+    <!--android:text="건물명"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/anytime" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/name"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="19dp"-->
+    <!--android:text="신청인"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/rent_type"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/title"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/anytime" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/phone"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="전화번호"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/name"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/name" />-->
+
+
+    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+    <!--&lt;!&ndash;android:id="@+id/room_type"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+    <!--&lt;!&ndash;android:text="방종류" />&ndash;&gt;-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/rent_type"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="거래종류"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/short_term"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/phone"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/name" />-->
+
+    <!--<CheckBox-->
+    <!--android:id="@+id/short_term"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="1dp"-->
+    <!--android:clickable="false"-->
+    <!--android:text="단기임대"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/room_number"-->
+    <!--app:layout_constraintEnd_toEndOf="@+id/name"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/name"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/rent_type" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/room_number"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="19dp"-->
+    <!--android:text="빈방호실"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/public_size"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/short_term"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/short_term" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/textView9"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="공급면적 : "-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/room_number"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/room_number" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/public_size"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="19dp"-->
+    <!--android:text="TextView"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/private_size"-->
+    <!--app:layout_constraintEnd_toEndOf="@+id/private_size"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/room_number" />-->
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/textView13"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="left"-->
+    <!--android:text="전용면적 : "-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/public_size" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/private_size"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginEnd="2dp"-->
+    <!--android:gravity="left"-->
+    <!--android:text="TextView"-->
+    <!--android:textColor="#000000"-->
+    <!--android:textSize="15dp"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/button2"-->
+    <!--app:layout_constraintEnd_toEndOf="@+id/textView13"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/public_size" />-->
+
+
+    <!--<Button-->
+    <!--android:id="@+id/button2"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="1dp"-->
+    <!--android:onClick="onCallBtnClicked"-->
+    <!--android:text="전화하기"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/button3"-->
+    <!--app:layout_constraintEnd_toEndOf="@+id/button3"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/private_size" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/button3"-->
+    <!--android:layout_width="87dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="414dp"-->
+    <!--android:text="촬영완료"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/button2" />-->
+
+
+</android.support.constraint.ConstraintLayout>
