@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -35,48 +36,17 @@ public class MainActivity extends AppCompatActivity {
     private String enrollUrl = "http://www.withhome360.com/bringEnrollDb.php";
     private String completed_enrollUrl = "http://www.withhome360.com/bringCompletedEnrollDb.php";
     String jsonString;
-    SingleAdapter adapter;
-    ListView listView;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    adapter.clearItems();
-                    adapter.notifyDataSetChanged();
-//                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    adapter.clearItems();
-                    adapter.notifyDataSetChanged();
-                    try {
-                        BackGroundTask backGroundTask = new BackGroundTask(dialog, enrollUrl, adapter, listView);
-                        backGroundTask.execute().get();
-                    }catch (Exception e){
-                       e.printStackTrace();
-                    }
-                    return true;
-                case R.id.navigation_notifications:
-                    adapter.clearItems();
-                    adapter.notifyDataSetChanged();
-                    try {
-                        BackGroundTask backGroundTask = new BackGroundTask(dialog, completed_enrollUrl, adapter, listView);
-                        backGroundTask.execute().get();
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
-                    return true;
-            }
-            return false;
-        }
-    };
+    SingleAdapter adapter,adapter2;
+    ListView listView,listView2;
+    Boolean state = true;
+    int naviState = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*getAppKeyHash();*/
 
 //        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -90,13 +60,14 @@ public class MainActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().subscribeToTopic("news");
         FirebaseInstanceId.getInstance().getToken();
         listView = findViewById(R.id.listView);
-        adapter = new SingleAdapter(getApplicationContext());
 
+        adapter = new SingleAdapter(getApplicationContext());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 SingleItem item = (SingleItem) adapter.getItem(i);
                 Intent intent = new Intent(getApplicationContext(),MapViewActivity.class);
+                intent.putExtra("state",state);
                 intent.putExtra("id",item.getID());
                 intent.putExtra("date",item.getDate());
                 intent.putExtra("time",item.getTime());
@@ -125,22 +96,89 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
     }
 
-//    private void getAppKeyHash() {
-//        try {
-//            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-//            for (android.content.pm.Signature signature : info.signatures) {
-//                MessageDigest md;
-//                md = MessageDigest.getInstance("SHA");
-//                md.update(signature.toByteArray());
-//                String something = new String(Base64.encode(md.digest(), 0));
-//                Log.d("Hash key", something);
-//            }
-//        } catch (Exception e) {
-//            // TODO Auto-generated catch block
-//            Log.e("name not found", e.toString());
-//        }
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(getApplicationContext(),"resume"+naviState,Toast.LENGTH_SHORT);
+        if(naviState==2){
+            adapter.clearItems();
+            adapter.notifyDataSetChanged();
+            try {
+                BackGroundTask backGroundTask = new BackGroundTask(dialog, enrollUrl, adapter, listView);
+                backGroundTask.execute().get();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        if(naviState==3){
+            adapter.clearItems();
+            adapter.notifyDataSetChanged();
+            try {
+                BackGroundTask backGroundTask = new BackGroundTask(dialog, completed_enrollUrl, adapter, listView);
+                backGroundTask.execute().get();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_home:
+                    naviState = 1;
+                    adapter.clearItems();
+                    adapter.notifyDataSetChanged();
+//                    mTextMessage.setText(R.string.title_home);
+                    return true;
+                case R.id.navigation_dashboard:
+                    naviState = 2;
+                    adapter.clearItems();
+                    adapter.notifyDataSetChanged();
+                    try {
+                        BackGroundTask backGroundTask = new BackGroundTask(dialog, enrollUrl, adapter, listView);
+                        backGroundTask.execute().get();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    state = true;
+                    return true;
+                case R.id.navigation_notifications:
+                    naviState = 3;
+                    adapter.clearItems();
+                    adapter.notifyDataSetChanged();
+                    try {
+                        BackGroundTask backGroundTask = new BackGroundTask(dialog, completed_enrollUrl, adapter, listView);
+                        backGroundTask.execute().get();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    state = false;
+                    return true;
+            }
+            return false;
+        }
+    };
+/*    private void getAppKeyHash() {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+            for (android.content.pm.Signature signature : info.signatures) {
+                MessageDigest md;
+                md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                String something = new String(Base64.encode(md.digest(), 0));
+                Log.d("Hash key", something);
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            Log.e("name not found", e.toString());
+        }
+    }*/
 
 }

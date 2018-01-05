@@ -1,13 +1,21 @@
 package www.withhome360.com.withmanagement;
 
+import android.app.ActionBar;
+import android.app.Fragment;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -28,15 +36,20 @@ public class MapViewActivity extends FragmentActivity implements OnMapReadyCallb
     boolean short_term;
     String room_number;
     double public_size, private_size;
-
+    Fragment mapFragment;
     TextView dateTv, timeTv, nameTv, phoneTv, titleTv, addressTv, room_typeTv, rent_typeTv, room_numberTv, public_sizeTv, private_sizeTv;
     CheckBox anytimeCb, short_termCb;
+    Button moveBtn;
+    String enrollUrl ="http://www.withhome360.com/management/enrollToCompleted.php";
+    String completedUrl ="http://www.withhome360.com/management/completedToEnroll.php";
+    Boolean state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapview);
         mapSetting();
 
+        moveBtn = findViewById(R.id.moveBtn);
         dateTv = findViewById(R.id.date);
         dateTv.setText(date);
         timeTv = findViewById(R.id.time);
@@ -57,18 +70,20 @@ public class MapViewActivity extends FragmentActivity implements OnMapReadyCallb
         rent_typeTv = findViewById(R.id.rent_type);
         rent_typeTv.setText(rent_type.replace(",","\n"));
         room_numberTv = findViewById(R.id.room_number);
-        room_numberTv.setText(room_number);
+        room_numberTv.setText("빈방호실 : "+room_number);
         public_sizeTv = findViewById(R.id.public_size);
         public_sizeTv.setText(public_size+"평");
         private_sizeTv = findViewById(R.id.private_size);
         private_sizeTv.setText(private_size+"평");
-;
+
+        moveBtnSetting();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
     public void mapSetting(){
+        this.state = getIntent().getExtras().getBoolean("state");
         this.id = getIntent().getExtras().getInt("id");
         this.date = getIntent().getExtras().getString("date");
         this.time = getIntent().getExtras().getString("time");
@@ -87,9 +102,46 @@ public class MapViewActivity extends FragmentActivity implements OnMapReadyCallb
         this.private_size = getIntent().getExtras().getDouble("private_size");
     }
 
+    public void moveBtnSetting() {
+        if (state == false) {
+            moveBtn.setText("복구");
+            moveBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    GetParsingData gpd = new GetParsingData(completedUrl+"?id="+id);
+                    gpd.start();
+                    Toast.makeText(getApplicationContext(), "복구", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+        }else {
+            moveBtn.setText("촬영완료");
+            moveBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    GetParsingData gpd = new GetParsingData(enrollUrl+"?id="+id);
+                    gpd.start();
+                    Toast.makeText(getApplicationContext(), "완료", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+        }
+    }
+
     public void onCallBtnClicked(View view) {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+this.phone));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phone));
         startActivity(intent);
+    }
+
+
+    public void onCatcherBtnClicked(View view){
+/*        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        mapFragment = getFragmentManager().findFragmentById(R.id.map);
+
+        mapFragment.getView().setLayoutParams(params);*/
+
+        /*ViewGroup.LayoutParams vl = mapFragment.getView().getLayoutParams();
+        vl.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+        vl.height = ViewGroup.LayoutParams.MATCH_PARENT;
+        mapFragment.getView().setLayoutParams(vl);*/
     }
     /**
      * Manipulates the map once available.
