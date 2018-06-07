@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
 //    private TextView mTextMessage;
     public ProgressDialog dialog;
     private BackGroundTask backGroundTask;
-    private String enrollUrl = "http://www.withhome360.com/bringEnrollDb.php";
-    private String completed_enrollUrl = "http://www.withhome360.com/bringCompletedEnrollDb.php";
+    private String enrollUrl = "http://www.withhome360.com/bring/bringEnrollDb.php";
+    private String completed_enrollUrl = "http://www.withhome360.com/bring/bringCompletedEnrollDb.php";
     String jsonString;
     SingleAdapter adapter,adapter2;
     ListView listView,listView2;
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         /*getAppKeyHash();*/
 

@@ -2,6 +2,7 @@ package www.withhome360.com.withmanagement;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -53,6 +54,7 @@ public class BackGroundTask extends AsyncTask<String, String, String> {
         try {
             gpd.join();
             result = gpd.GetResult();
+            Log.d("result",result);
         } catch (Exception e) {
             e.printStackTrace();
         }
