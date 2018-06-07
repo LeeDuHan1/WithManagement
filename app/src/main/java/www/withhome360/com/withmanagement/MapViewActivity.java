@@ -2,6 +2,8 @@ package www.withhome360.com.withmanagement;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
@@ -51,9 +53,9 @@ public class MapViewActivity extends FragmentActivity implements OnMapReadyCallb
 
         moveBtn = findViewById(R.id.moveBtn);
         dateTv = findViewById(R.id.date);
-        dateTv.setText(date);
+        dateTv.setText("날짜 : "+date);
         timeTv = findViewById(R.id.time);
-        timeTv.setText(time);
+        timeTv.setText("시간 : "+time);
         anytimeCb = findViewById(R.id.anytime);
         anytimeCb.setChecked(anytime);
         short_termCb = findViewById(R.id.short_term);
@@ -133,6 +135,12 @@ public class MapViewActivity extends FragmentActivity implements OnMapReadyCallb
 
 
     public void onCatcherBtnClicked(View view){
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//        ScaleMapFragment scaleMapFragment = new ScaleMapFragment();
+//        fragmentTransaction.add(R.id.fragment_container,fragment);
+
 /*        ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
         mapFragment = getFragmentManager().findFragmentById(R.id.map);
 

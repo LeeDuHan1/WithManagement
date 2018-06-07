@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        /*getAppKeyHash();*/
+//        getAppKeyHash();
 
 //        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
 //                    mTextMessage.setText(R.string.title_home);
                     return true;
-                case R.id.navigation_dashboard:
+                case R.id.navigation_takephoto:
                     naviState = 2;
                     adapter.clearItems();
                     adapter.notifyDataSetChanged();
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     state = true;
                     return true;
-                case R.id.navigation_notifications:
+                case R.id.navigation_photoclear:
                     naviState = 3;
                     adapter.clearItems();
                     adapter.notifyDataSetChanged();
@@ -166,20 +166,20 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
-/*    private void getAppKeyHash() {
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
-            for (android.content.pm.Signature signature : info.signatures) {
-                MessageDigest md;
-                md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                String something = new String(Base64.encode(md.digest(), 0));
-                Log.d("Hash key", something);
-            }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            Log.e("name not found", e.toString());
-        }
-    }*/
+//  private void getAppKeyHash() {
+//        try {
+//            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+//            for (android.content.pm.Signature signature : info.signatures) {
+//                MessageDigest md;
+//                md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                String something = new String(Base64.encode(md.digest(), 0));
+//                Log.d("Hash key", something);
+//            }
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            Log.e("name not found", e.toString());
+//        }
+//    }
 
 }

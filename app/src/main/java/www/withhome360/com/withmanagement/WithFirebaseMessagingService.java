@@ -34,7 +34,7 @@ public class WithFirebaseMessagingService extends com.google.firebase.messaging.
 
 
     private void sendNotification(String messageBody) {
-        Log.d(TAG,"노티함수");
+        Log.d(TAG,messageBody);
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -48,8 +48,8 @@ public class WithFirebaseMessagingService extends com.google.firebase.messaging.
 //                .setSmallIcon(R.mipmap.ic_launcher);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext())
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("위드관리자어플 Push Test")
-                .setContentText("새로운 매물이 등록되었습니다.")
+                .setContentTitle("위드관리자어플 (매물등록)")
+                .setContentText(messageBody)
                 .setSound(defaultSoundUri)
                 .setAutoCancel(true)
                 .setVibrate(new long[]{0,1000})
