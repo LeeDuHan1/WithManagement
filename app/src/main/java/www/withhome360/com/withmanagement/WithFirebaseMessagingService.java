@@ -42,10 +42,6 @@ public class WithFirebaseMessagingService extends com.google.firebase.messaging.
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-//        Notification noti = new Notification.Builder(this)
-//                .setContentTitle("New mail from ")
-//                .setContentText("d")
-//                .setSmallIcon(R.mipmap.ic_launcher);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(getApplicationContext())
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("위드관리자어플 (매물등록)")

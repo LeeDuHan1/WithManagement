@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                     naviState = 1;
                     adapter.clearItems();
                     adapter.notifyDataSetChanged();
-//                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_takephoto:
                     naviState = 2;

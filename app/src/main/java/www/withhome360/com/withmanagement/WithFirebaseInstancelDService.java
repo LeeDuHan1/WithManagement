@@ -16,7 +16,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 
 public class WithFirebaseInstancelDService extends FirebaseInstanceIdService {
-    private static final String TAG = "MyID";
+    private static final String TAG = "TokenCheck";
 
     @Override
     public void onTokenRefresh() {
